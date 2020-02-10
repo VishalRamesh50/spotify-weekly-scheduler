@@ -1,0 +1,68 @@
+{
+  // Python
+  "python.formatting.provider": "black",
+  "python.linting.enabled": true,
+  "python.linting.mypyEnabled": true,
+  "python.linting.flake8Enabled": true,
+  "python.linting.mypyCategorySeverity.error": "Information",
+  "python.linting.flake8CategorySeverity.E": "Warning",
+  "python.linting.flake8CategorySeverity.F": "Warning",
+  "python.linting.flake8CategorySeverity.W": "Warning",
+  "python.linting.flake8Args": ["--ignore", "E501"],
+  "[python]": {
+    "editor.rulers": [88]
+  },
+  // CSS
+  "css.validate": false,
+  "stylelint.enable": true,
+  // JavaScript
+  "javascript.suggest.autoImports": false,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "eslint.enable": true,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // npm
+  "npm.autoDetect": "on",
+  "npm.packageManager": "yarn",
+  // Prettier
+  "prettier.useTabs": false,
+  "prettier.tabWidth": 2,
+  "prettier.semi": false,
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "all",
+
+  // VS Code Settings
+  "editor.detectIndentation": false,
+  "editor.formatOnSave": true,
+  "editor.minimap.enabled": false,
+  "editor.renderWhitespace": "all",
+  "editor.rulers": [80],
+  "files.insertFinalNewline": true,
+  // Exclude files from VSCode File Browser
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/.cache": true,
+    "**/.git": true,
+    "**/.pytest_cache": true,
+    "**/.DS_Store": true,
+    "**/*.pyc": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "*.js.map": true,
+    "*.css.map": true,
+    "*.min.js": true
+  },
+  "workbench.colorCustomizations": {
+    "editorWarning.foreground": "#dd0"
+  },
+  "workbench.editor.enablePreview": false,
+  "workbench.editor.enablePreviewFromQuickOpen": false,
+  "workbench.editor.labelFormat": "short",
+  "vim.foldfix": true,
+  "vim.hlsearch": true,
+  "vim.useSystemClipboard": true,
+  "vim.visualstar": true
+}
