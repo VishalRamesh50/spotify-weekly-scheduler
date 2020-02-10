@@ -22,6 +22,8 @@ chrome_options = Options()
 if GOOGLE_CHROME_BIN:
     chrome_options.binary_location = GOOGLE_CHROME_BIN
 chrome_options.add_argument("--headless")
+chrome_options.add_argument("--no-sandbox")
+chrome_options.add_argument("--disable-dev-shm-usage")
 try:
     driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, options=chrome_options)
 except Exception as e:
