@@ -8,6 +8,9 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.remote.webelement import WebElement
 from typing import List, Dict, Optional
+import sys
+
+print(sys.platform)
 
 load_dotenv()
 
@@ -17,9 +20,22 @@ SPOTIFY_PASSWORD: Optional[str] = os.getenv("SPOTIFY_PASSWORD")
 print("Starting up Chromium Browser...")
 chrome_options = Options()
 chrome_options.add_argument("--headless")
-driver = webdriver.Chrome(
-    executable_path="./chromedriver", chrome_options=chrome_options
-)
+try:
+    driver = webdriver.Chrome(
+        executable_path="./chromedriver-mac", options=chrome_options
+    )
+except Exception as e:
+    print("Mac os version doesn't work")
+    print(e)
+    try:
+        driver = webdriver.Chrome(
+            executable_path="./chromedriver-linux", options=chrome_options
+        )
+    except Exception as e:
+        print("Linux os version doesn't work")
+        print(e)
+        raise e
+
 driver.get("https://developer.spotify.com/console/post-playlists/")
 
 
