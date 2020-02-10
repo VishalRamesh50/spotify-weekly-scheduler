@@ -24,11 +24,7 @@ if GOOGLE_CHROME_BIN:
 chrome_options.add_argument("--headless")
 chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--disable-dev-shm-usage")
-try:
-    driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, options=chrome_options)
-except Exception as e:
-    print(e)
-    raise e
+driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, options=chrome_options)
 
 driver.get("https://developer.spotify.com/console/post-playlists/")
 
