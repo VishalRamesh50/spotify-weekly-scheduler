@@ -8,33 +8,25 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.remote.webelement import WebElement
 from typing import List, Dict, Optional
-import sys
-
-print(sys.platform)
 
 load_dotenv()
 
 SPOTIFY_USERNAME: Optional[str] = os.getenv("SPOTIFY_USERNAME")
 SPOTIFY_PASSWORD: Optional[str] = os.getenv("SPOTIFY_PASSWORD")
+GOOGLE_CHROME_BIN: Optional[str] = os.getenv("GOOGLE_CHROME_BIN")
+CHROMEDRIVER_PATH: str = os.getenv("CHROMEDRIVER_PATH", "./chromedriver")
+
 
 print("Starting up Chromium Browser...")
 chrome_options = Options()
+if GOOGLE_CHROME_BIN:
+    chrome_options.binary_location = GOOGLE_CHROME_BIN
 chrome_options.add_argument("--headless")
 try:
-    driver = webdriver.Chrome(
-        executable_path="./chromedriver-mac", options=chrome_options
-    )
+    driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, options=chrome_options)
 except Exception as e:
-    print("Mac os version doesn't work")
     print(e)
-    try:
-        driver = webdriver.Chrome(
-            executable_path="./chromedriver-linux", options=chrome_options
-        )
-    except Exception as e:
-        print("Linux os version doesn't work")
-        print(e)
-        raise e
+    raise e
 
 driver.get("https://developer.spotify.com/console/post-playlists/")
 
