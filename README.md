@@ -10,7 +10,7 @@
 
 1. Clone this repository, e.g.
    ```sh
-   git clone git@github.com:VishalRamesh50/spotify-weekly-scheduler.git
+   git clone https://github.com/VishalRamesh50/spotify-weekly-scheduler.git
    ```
 2. Copy `.vscode.example` to `.vscode` to get linting settings (optional)
    ```sh
