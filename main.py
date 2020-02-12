@@ -1,14 +1,15 @@
-import os
 import logging
+import os
 import requests
+import sys
 import time
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
 from pytz import timezone
 from selenium import webdriver
+from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.remote.webelement import WebElement
-from selenium.common.exceptions import NoSuchElementException
 from typing import List, Dict, Optional
 
 load_dotenv()
@@ -55,6 +56,26 @@ password_field: WebElement = driver.find_element_by_id("login-password")
 password_field.send_keys(SPOTIFY_PASSWORD)
 login_button: WebElement = driver.find_element_by_id("login-button").click()
 time.sleep(1)
+# if the username/password is not entered
+try:
+    driver.find_element_by_css_selector(
+        "label.control-label-validation.ng-binding.ng-scope"
+    )
+    logging.error(
+        "Your username and/or password is blank. Make sure these are specified via environment variables correctly."
+    )
+    sys.exit(0)
+except NoSuchElementException:
+    pass
+# if the username/password is invalid
+try:
+    driver.find_element_by_xpath("//p[text()='Incorrect username or password.']")
+    logging.error(
+        "Incorrect username or password. Make sure these are specified via environment variables correctly."
+    )
+    sys.exit(0)
+except NoSuchElementException:
+    logging.info("Spotify creds validated.")
 try:
     accept_button: WebElement = driver.find_element_by_id(
         "authorize-accept-form"
