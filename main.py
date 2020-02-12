@@ -37,6 +37,10 @@ get_token_button: WebElement = driver.find_element_by_xpath(
     "//button[text()='Get Token']"
 ).click()
 time.sleep(1)
+logging.info("Selecting scopes...")
+scopes: List[WebElement] = driver.find_elements_by_class_name("control-indicator")
+playlist_modify_public_scope: WebElement = scopes[0].click()
+playlist_modify_public_scope = scopes[1].click()
 logging.info("Clicking on Request Token Button...")
 driver.find_element_by_id("oauthRequestToken").click()
 time.sleep(1)
