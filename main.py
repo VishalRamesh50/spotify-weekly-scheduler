@@ -8,6 +8,7 @@ from pytz import timezone
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.remote.webelement import WebElement
+from selenium.common.exceptions import NoSuchElementException
 from typing import List, Dict, Optional
 
 load_dotenv()
@@ -53,6 +54,11 @@ username_field.send_keys(SPOTIFY_USERNAME)
 password_field: WebElement = driver.find_element_by_id("login-password")
 password_field.send_keys(SPOTIFY_PASSWORD)
 login_button: WebElement = driver.find_element_by_id("login-button").click()
+time.sleep(1)
+try:
+    accept_button: WebElement = driver.find_element_by_id("authorize-accept-form").click()
+except NoSuchElementException:
+    pass
 time.sleep(2)
 # -------------------------- SPOTIFY SIGN IN ---------------------------
 
