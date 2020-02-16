@@ -1,4 +1,4 @@
-![Spotify Scheduler Banner](https://imgur.com/1wJASCM.png)
+![Spotify Scheduler Banner](./assets/spotify-scheduler-banner.png)
 
 # Spotify Weekly Playlist Scheduler
 
