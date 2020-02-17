@@ -69,7 +69,7 @@ except NoSuchElementException:
     pass
 # if the username/password is invalid
 try:
-    driver.find_element_by_xpath("//p[text()='Incorrect username or password.']")
+    driver.find_element_by_xpath("//span[text()='Incorrect username or password.']")
     logging.error(
         "Incorrect username or password. Make sure these are specified via environment variables correctly."
     )
