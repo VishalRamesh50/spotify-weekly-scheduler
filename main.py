@@ -20,6 +20,12 @@ SPOTIFY_PASSWORD: Optional[str] = os.getenv("SPOTIFY_PASSWORD")
 GOOGLE_CHROME_BIN: Optional[str] = os.getenv("GOOGLE_CHROME_BIN")
 CHROMEDRIVER_PATH: str = os.getenv("CHROMEDRIVER_PATH", "./chromedriver")
 
+# if the username/password is not entered
+if not (SPOTIFY_USERNAME and SPOTIFY_PASSWORD):
+    logging.error(
+        "Your username and/or password is blank. Make sure these are specified via environment variables correctly."
+    )
+    sys.exit(0)
 
 logging.info("Starting up Chromium Browser...")
 chrome_options = Options()
@@ -56,17 +62,6 @@ password_field: WebElement = driver.find_element_by_id("login-password")
 password_field.send_keys(SPOTIFY_PASSWORD)
 login_button: WebElement = driver.find_element_by_id("login-button").click()
 time.sleep(1)
-# if the username/password is not entered
-try:
-    driver.find_element_by_css_selector(
-        "label.control-label-validation.ng-binding.ng-scope"
-    )
-    logging.error(
-        "Your username and/or password is blank. Make sure these are specified via environment variables correctly."
-    )
-    sys.exit(0)
-except NoSuchElementException:
-    pass
 # if the username/password is invalid
 try:
     driver.find_element_by_xpath("//span[text()='Incorrect username or password.']")
